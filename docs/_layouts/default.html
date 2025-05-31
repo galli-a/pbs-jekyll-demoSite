@@ -6,10 +6,34 @@
   <title>{{ page.title }} | {{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-<body>
-<main class="container pt-3">
-    {{ content }}
-</main>
-<script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
-</body>
+  <body>
+    <div class="container">
+      <div class="row">
+        <header class="col-12">
+          <nav class="navbar navbar-light bg-light navbar-expand-sm fixed-top border border-1">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation bar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div id="navbarContent" class="collapse navbar-collapse">
+                <div class="navbar-nav">
+                  {%- assign nav_pages = site.html_pages | where_exp: "item", "item.title != 'Home'" %}
+                  {%- for p in nav_pages %}
+                  <a class="nav-link {%- if p.url == page.url %} active{% endif %}" aria-current="page" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+                  {%- endfor %}
+                </div>
+              </div>
+            </div>
+          </nav>
+        </header>
+      </div>
+      <div class="row">
+        <main class="container pt-3">
+            {{ content }}
+        </main>
+      </div>
+    </div>
+    <script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+  </body>
 </html>
