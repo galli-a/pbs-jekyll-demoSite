@@ -1,0 +1,15 @@
+<aside>
+	<div class="card" style="width: 18rem; float: right; margin-left: 0.5rem;">
+		<div class="card-body">
+			{%- if include.title %}
+			<h5 class="card-title">{{ include.title | markdownify }}</h5>
+			{% endif -%}
+			<p>{{ include.content | markdownify}}</p>
+		</div>
+		{%- if include.more_info_url %}
+		<div class="card-footer text-body-secondary">
+    		<a href="{{ include.more_info_url }}" class="btn btn-primary">More info…</a>
+    	</div>
+    	{% endif -%}
+	</div>
+</aside>
